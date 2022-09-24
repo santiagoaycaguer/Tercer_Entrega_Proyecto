@@ -1,11 +1,10 @@
 @import "base/mixin";
+@import "base/listas";
 
 /* Aplico reset*/
 
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    @include reset;
 }
 
 
@@ -29,7 +28,7 @@ body{
 
 
 .container-fluid{
-    background-color: darkslategrey;
+    background-color: nth($colores,1);
 }
 
 h1{
@@ -38,9 +37,14 @@ h1{
     font-family:Acrobat,Arial Unicode MS,Impact,Arial Black,sans-serif!important;
 }
 
-h3{
+h2{
+    color: nth($colores,1);
     text-align: center;
     padding-bottom: 10px;
+}
+
+p{
+    color: nth($colores,2);
 }
 
 header nav{
@@ -52,13 +56,7 @@ header nav ul{
 }
 
 header nav ul li{
-    margin-inline: 10px;
-    display: inline-block;
-    border-radius: 25px;
-    font-weight: bold;
-    list-style: none;
-    background-color: rgba(58, 9, 104, 0.758);
-    padding: 5px;
+    @include li;
 }
 
 header nav ul li:hover{
@@ -94,6 +92,10 @@ footer ul{
 
 footer{
     text-align: center;
+}
+
+.titulo_footer{
+    font-size: 20px;
     color: gold;
 }
 
@@ -150,7 +152,7 @@ footer .twitt{
     grid-template-rows: 0.5fr 0.5fr;
 
     grid-template-areas: "img-webb titulo"
-                         "img-luna img-luna";
+                         "img-luna comparaciones";
 }
 
 
@@ -161,16 +163,27 @@ footer .twitt{
 }
 
 .titulo{
-    margin-top: 50px;
+    text-align: center;
+    margin-top: 100px;
     grid-area: titulo;
     grid-row: 1;
     grid-column: 2;
 }
 
 .img-luna{
+    width: 100%;
+    margin-left: 300px;
     grid-area: img-luna;
     grid-row: 2;
     grid-column: 1;
+}
+
+.comparaciones{
+    margin-top: 100px;
+    text-align: center;
+    grid-area: comparaciones;
+    grid-row: 2;
+    grid-column: 2;
 }
 
 
@@ -196,15 +209,18 @@ footer .twitt{
 }
 
 .productos{
+    margin-left: 180px;
     margin-top: 200px;
     width: 100%;
     height: 130vh;
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 0.5fr 1fr 0.5fr;
 
     grid-template-areas: "remera poster"
-                         "canguro collar";
+                         "precio_remera precio_poster"
+                         "canguro collar"
+                         "precio_canguro precio_collar";
        
     align-content: center;
 }
@@ -215,23 +231,49 @@ footer .twitt{
     grid-column: 1;
 }
 
+.precio_remera{
+    grid-area: precio_remera;
+    grid-row: 2;
+    grid-column: 1;
+}
+
 .poster{
     grid-area: poster;
     grid-row: 1;
     grid-column: 2;
 }
 
+.precio_poster{
+    grid-area: precio_poster;
+    grid-row: 2;
+    grid-column: 2;
+}
+
 .canguro{
     grid-area: canguro;
-    grid-row: 2;
+    grid-row: 3;
+    grid-column: 1;
+}
+
+.precio_canguro{
+    grid-area: precio_canguro;
+    grid-row: 4;
     grid-column: 1;
 }
 
 .collar{
     grid-area: collar;
-    grid-row: 2;
+    grid-row: 3;
     grid-column: 2;
 }
+
+.precio_collar{
+    grid-area: precio_collar;
+    grid-row: 4;
+    grid-column: 2;
+}
+
+
 
 
 
@@ -250,6 +292,10 @@ form{
     margin: 60px;
 }
 
+.formulario{
+    margin-top: 150px;
+}
+
 form div fieldset{
     color: whitesmoke;
 }
@@ -260,10 +306,14 @@ form div fieldset{
 }
 
 .mapa{
-    margin: 50px;
+    margin-top: 150px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.footer_contacto{
+    margin-top: 100px;
 }
 
 
@@ -277,7 +327,7 @@ form div fieldset{
     width: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
     grid-template-areas: "img-1 titulo-1" 
                          "titulo-2 img-2"
@@ -285,7 +335,8 @@ form div fieldset{
                          "titulo-4 img-4"
                          "img-5 titulo-5" 
                          "titulo-6 img-6"
-                         "img-7 titulo-7";
+                         "img-7 titulo-7"
+                         "footer_galeria footer_galeria";
 
     align-items: center;
     justify-items: center;
@@ -375,6 +426,11 @@ form div fieldset{
     grid-column: 1;
 }
 
+.footer_galeria{
+    grid-area: footer_galeria;
+    grid-row: 8;
+}
+
 .primerImagen{
     width: 90%;
 }
@@ -411,23 +467,11 @@ form div fieldset{
 
 
 table{
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.449), rgba(0, 0, 128, 0.751), rgba(241, 50, 50, 0.592));
-    margin-left: 15%;
-    margin-top: 50px;
-    width: 70%;
-    border: 2px solid #000;
-    border-spacing: 5px;
+    @include tabla;
 }
 
 th, td{
-    color: aliceblue;
-    width: 60%;
-    text-align: left;
-    vertical-align: top;
-    border: 1px solid #000;
-    border-collapse: collapse;
-    padding: 0.1em;
-    caption-side: bottom;
+    @include td;
 }
 
 th{
@@ -472,6 +516,10 @@ td{
     text-align: start;
 }
 
+.titulo_mision{
+    color: nth($colores,2);
+}
+
 
 
 
@@ -504,7 +552,8 @@ td{
                              "img-6"
                              "titulo-6"
                              "img-7"
-                             "titulo-7";
+                             "titulo-7"
+                             "footer_galeria";
     }
     .img-1{
         grid-area: img-1;
@@ -589,6 +638,12 @@ td{
         grid-row: 14;
         grid-column: 1;
     }
+
+    .footer_galeria{
+        grid-area: footer_galeria;
+        grid-row: 15;
+        grid-column: 1;
+    }
 }
 
 
@@ -603,11 +658,13 @@ td{
     .home{
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: 1fr 1fr 0.5fr;
+        grid-template-rows: 1fr 1fr 0.5fr 0.5fr 0.5fr;
 
         grid-template-areas: "img-webb"
                              "titulo"
-                             "img-luna";
+                             "img-luna"
+                             "comparaciones"
+                             "footer_index";
     }
 
     .img-webb{
@@ -617,14 +674,115 @@ td{
     }
 
     .titulo{
+        text-align: center;
         grid-area: titulo;
         grid-row: 2;
         grid-column: 1;
     }
 
     .img-luna{
+        width: 100%;
+        margin-left: 200px;
         grid-area: img-luna;
         grid-row: 3;
         grid-column: 1;
+    }
+
+    .comparaciones{
+        text-align: center;
+        grid-area: comparaciones;
+        grid-row: 4;
+        grid-column: 1;
+    }
+
+    .footer_index{
+        margin-top: 300px;
+        grid-area: footer_index;
+        grid-row: 5;
+        grid-column: 1;
+    }
+}
+
+
+/* Estilo mobile -- Productos*/
+
+
+@media screen and (min-width: 400px) and (max-width: 700px){
+    .productos{
+        margin-top: 290px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 1fr 0.5fr 1fr 0.5fr 1fr 0.5fr 1fr 0.5fr 1fr;
+
+        grid-template-areas: "remera"
+                             "precio_remera" 
+                             "poster"
+                             "precio_poster"
+                             "canguro" 
+                             "precio_canguro"
+                             "collar"
+                             "precio_collar"
+                             "footer_productos";
+        
+        align-content: center;
+    }
+
+    .remera{
+        grid-area: remera;
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    .precio_remera{
+        grid-area: precio_remera;
+        grid-row: 2;
+        grid-column: 1;
+    }
+    
+    .poster{
+        margin-bottom: 50px;
+        grid-area: poster;
+        grid-row: 3;
+        grid-column: 1;
+    }
+
+    .precio_poster{
+        grid-area: precio_poster;
+        grid-row: 4;
+        grid-column: 1;
+    }
+    
+    .canguro{
+        margin-bottom: 50px;
+        grid-area: canguro;
+        grid-row: 5;
+        grid-column: 1;
+    }
+
+    .precio_canguro{
+        grid-area: precio_canguro;
+        grid-row: 6;
+        grid-column: 1;
+    }
+    
+    .collar{
+        margin-bottom: 50px;
+        grid-area: collar;
+        grid-row: 7;
+        grid-column: 1;
+    }
+
+    .precio_collar{
+        grid-area: precio_collar;
+        grid-row: 8;
+        grid-column: 1;
+    }
+
+    .footer_productos{
+        grid-area: footer_productos;
+        grid-row: 9;
+        grid-column: 1;
+        margin-top: 300px;
     }
 }

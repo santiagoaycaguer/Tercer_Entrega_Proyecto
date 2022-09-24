@@ -1,0 +1,35 @@
+@mixin reset {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@mixin li {
+    margin-inline: 10px;
+    display: inline-block;
+    border-radius: 25px;
+    font-weight: bold;
+    list-style: none;
+    background-color: rgba(248, 230, 31, 0.529);
+    padding: 5px;
+}
+
+@mixin tabla {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.449), rgba(0, 0, 128, 0.751), rgba(241, 50, 50, 0.592));
+    margin-left: 15%;
+    margin-top: 50px;
+    width: 70%;
+    border: 2px solid #000;
+    border-spacing: 5px;
+}
+
+@mixin td {
+    color: aliceblue;
+    width: 60%;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid #000;
+    border-collapse: collapse;
+    padding: 0.1em;
+    caption-side: bottom;
+}
